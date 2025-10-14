@@ -5,9 +5,9 @@
 #include "pms.h"
 #include <limits.h>
 
-EIU-MaxSAT::EIU-MaxSAT() {}
+EIUMaxSAT::EIUMaxSAT() {}
 
-bool EIU-MaxSAT::parse_parameters2(int argc, char **argv)
+bool EIUMaxSAT::parse_parameters2(int argc, char **argv)
 {
     int i = 0;
     int temp_para = 0;
@@ -96,7 +96,7 @@ bool EIU-MaxSAT::parse_parameters2(int argc, char **argv)
     return true;
 }
 
-void EIU-MaxSAT::settings()
+void EIUMaxSAT::settings()
 {
     local_soln_feasible = 1;
     cutoff_time = 300;
@@ -168,7 +168,7 @@ void EIU-MaxSAT::settings()
     }
 }
 
-void EIU-MaxSAT::build_neighbor_relation()
+void EIUMaxSAT::build_neighbor_relation()
 {
     int i, j, count;
     int v, c, n;
@@ -207,7 +207,7 @@ void EIU-MaxSAT::build_neighbor_relation()
     }
 }
 
-void EIU-MaxSAT::build_instance(char *filename)
+void EIUMaxSAT::build_instance(char *filename)
 {
     total_soft_length = 0;
     total_hard_length = 0;
@@ -410,7 +410,7 @@ void EIU-MaxSAT::build_instance(char *filename)
     best_soln_feasible = 0;
 }
 
-void EIU-MaxSAT::allocate_memory()
+void EIUMaxSAT::allocate_memory()
 {
     int malloc_var_length = num_vars + 10;
     int malloc_clause_length = num_clauses + 10;
@@ -467,7 +467,7 @@ void EIU-MaxSAT::allocate_memory()
     always_unsat_sc_count = new int[malloc_clause_length];
 }
 
-void EIU-MaxSAT::free_memory()
+void EIUMaxSAT::free_memory()
 {
     int i;
     for (i = 0; i < num_clauses; i++)

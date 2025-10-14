@@ -9,7 +9,7 @@ extern long long total_step;
 extern long long consecutive_better_soft;
 extern char * file_name;
 
-void EIU-MaxSAT::update_goodvarstack1(int flipvar)
+void EIUMaxSAT::update_goodvarstack1(int flipvar)
 {
 	int v;
 	//remove the vars no longer goodvar in goodvar stack
@@ -37,7 +37,7 @@ void EIU-MaxSAT::update_goodvarstack1(int flipvar)
 		}
 	}
 }
-void EIU-MaxSAT::update_goodvarstack2(int flipvar)
+void EIUMaxSAT::update_goodvarstack2(int flipvar)
 {
 	if (score[flipvar] > 0 && already_in_goodvar_stack[flipvar] == -1)
 	{
@@ -75,7 +75,7 @@ void EIU-MaxSAT::update_goodvarstack2(int flipvar)
 	}
 }
 
-void EIU-MaxSAT::flip(int flipvar)
+void EIUMaxSAT::flip(int flipvar)
 {
 	int i, v, c;
 	int index;
@@ -177,7 +177,7 @@ void EIU-MaxSAT::flip(int flipvar)
 	//update_goodvarstack1(flipvar);
 }
 
-void EIU-MaxSAT::print_best_solution()
+void EIUMaxSAT::print_best_solution()
 {
 	if (best_soln_feasible == 0)
 		return;
@@ -195,7 +195,7 @@ void EIU-MaxSAT::print_best_solution()
 	printf("\n");
 }
 
-bool EIU-MaxSAT::verify_sol()
+bool EIUMaxSAT::verify_sol()
 {
 	int c, j, flag;
 	long long verify_unsat_weight = 0;
@@ -247,7 +247,7 @@ bool EIU-MaxSAT::verify_sol()
 	return 0;
 }
 
-void EIU-MaxSAT::simple_print(char* filename)
+void EIUMaxSAT::simple_print(char* filename)
 {
 	if (best_soln_feasible != 0)
 	{
@@ -262,7 +262,7 @@ void EIU-MaxSAT::simple_print(char* filename)
   	}
 }
 
-inline void EIU-MaxSAT::unsat(int clause)
+inline void EIUMaxSAT::unsat(int clause)
 {
 	if (org_clause_weight[clause] == top_clause_weight)
 	{
@@ -278,7 +278,7 @@ inline void EIU-MaxSAT::unsat(int clause)
 	}
 }
 
-inline void EIU-MaxSAT::sat(int clause)
+inline void EIUMaxSAT::sat(int clause)
 {
 	int index, last_unsat_clause;
 

@@ -42,7 +42,7 @@ static void start_timing()
 	times(&start_time);
 }
 
-class EIU-MaxSAT
+class EIUMaxSAT
 {
   private:
 	/***********non-algorithmic information ****************/
@@ -191,7 +191,7 @@ class EIU-MaxSAT
 	void soft_increase_weights_not_partial();
 
   public:
-	EIU-MaxSAT();
+	EIUMaxSAT();
 	void settings();
 	void build_instance(char *filename);
 	void local_search_with_decimation(char *inputfile);

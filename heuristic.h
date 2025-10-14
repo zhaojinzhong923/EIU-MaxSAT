@@ -4,7 +4,7 @@
 #include "basis_pms.h"
 #include "deci.h"
 
-void EIU-MaxSAT::init(vector<int> &init_solution)
+void EIUMaxSAT::init(vector<int> &init_solution)
 {
     soft_large_weight_clauses_count = 0;
 
@@ -187,7 +187,7 @@ void EIU-MaxSAT::init(vector<int> &init_solution)
     }
 }
 
-int EIU-MaxSAT::pick_var()
+int EIUMaxSAT::pick_var()
 {
     int i, v, c;
     int best_var;
@@ -303,7 +303,7 @@ int EIU-MaxSAT::pick_var()
     return best_var;
 }
 
-void EIU-MaxSAT::local_search_with_decimation(char *inputfile)
+void EIUMaxSAT::local_search_with_decimation(char *inputfile)
 {
     Decimation deci(var_lit, var_lit_count, clause_lit, org_clause_weight, top_clause_weight);
     deci.make_space(num_clauses, num_vars);
@@ -391,7 +391,7 @@ void EIU-MaxSAT::local_search_with_decimation(char *inputfile)
     }
 }
 
-void EIU-MaxSAT::hard_increase_weights(){
+void EIUMaxSAT::hard_increase_weights(){
     int i, c, v;
     for (i = 0; i < hardunsat_stack_fill_pointer; ++i)
     {
@@ -415,7 +415,7 @@ void EIU-MaxSAT::hard_increase_weights(){
     return;
 }
 
-void EIU-MaxSAT::soft_increase_weights(){
+void EIUMaxSAT::soft_increase_weights(){
     int i, c, v;
 
     if (1 == problem_weighted)
@@ -495,7 +495,7 @@ void EIU-MaxSAT::soft_increase_weights(){
     return;
 }
 
-void EIU-MaxSAT::soft_smooth_weights()
+void EIUMaxSAT::soft_smooth_weights()
 {
     int i, clause, v;
 
@@ -526,7 +526,7 @@ void EIU-MaxSAT::soft_smooth_weights()
     return;
 }
 
-void EIU-MaxSAT::soft_increase_weights_not_partial()
+void EIUMaxSAT::soft_increase_weights_not_partial()
 {
     int i, c, v;
 
@@ -585,7 +585,7 @@ void EIU-MaxSAT::soft_increase_weights_not_partial()
     return;
 }
 
-void EIU-MaxSAT::update_clause_weights()
+void EIUMaxSAT::update_clause_weights()
 {
     if (num_hclauses > 0)
     {

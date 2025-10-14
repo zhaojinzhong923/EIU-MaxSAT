@@ -4,7 +4,7 @@
 #include "heuristic.h"
 #include <signal.h>
 
-EIU-MaxSAT s;
+EIUMaxSAT s;
 int seed = 1;
 long long best_known;
 long long total_step = 0;
