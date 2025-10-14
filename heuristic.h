@@ -267,15 +267,23 @@ int EIUMaxSAT::pick_var()
             sel_c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
             // if (clause_lit_count[sel_c] != 0)
             //     break;
-            if((softunsat_stack_fill_pointer > 10) && ((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < 0.2) && (problem_weighted==1) ){
-                for (i = 0; i < 10; ++i)
-                {
-                    c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
-                    if (org_clause_weight[c] > org_clause_weight[sel_c])
-                        sel_c = c;
+            if((softunsat_stack_fill_pointer > 10) && ((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < 0.2) ){
+                if(problem_weighted == 0){
+                    for (i = 0; i < 10; ++i)
+                    {
+                        c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
+                        if (clause_weight[c] > clause_weight[sel_c])
+                            sel_c = c;
+                    }
+                }else{
+
+                    for (i = 0; i < 10; ++i)
+                    {
+                        c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
+                        if (org_clause_weight[c] > org_clause_weight[sel_c])
+                            sel_c = c;
+                    }
                 }
-                // if (clause_lit_count[sel_c] != 0)
-                //     break;
             }
             // }else{
             //     sel_c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
