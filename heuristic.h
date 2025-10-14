@@ -305,7 +305,7 @@ int EIUMaxSAT::pick_var()
 
 void EIUMaxSAT::local_search_with_decimation(char *inputfile)
 {
-    Decimation deci(var_lit, var_lit_count, clause_lit, org_clause_weight, top_clause_weight);
+    Decimation deci(var_lit, var_lit_count, clause_lit, org_clause_weight, top_clause_weight, var_neighbor_count);
     deci.make_space(num_clauses, num_vars);
     total_step = 0;
     opt_unsat_weight = __LONG_LONG_MAX__;

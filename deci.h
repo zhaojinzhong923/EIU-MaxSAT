@@ -61,13 +61,15 @@ class Decimation
     int *clause_lit_count;
 };
 
-Decimation::Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight)
+Decimation::Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight, ls_var_neighbor_count)
 {
     var_lit = ls_var_lit;
     var_lit_count = ls_var_lit_count;
     clause_lit = ls_clause_lit;
     org_clause_weight = ls_org_clause_weight;
     top_clause_weight = ls_top_clause_weight;
+
+    var_neighbor_count = ls_var_neighbor_count;
 }
 
 void Decimation::make_space(int max_c, int max_v)
