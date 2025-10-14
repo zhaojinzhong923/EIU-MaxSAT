@@ -398,7 +398,7 @@ void Decimation::random_propagation()
         // assign(v2, sense2);
         for(int i = 0; i < 15; ++i){
             v1 = unassigned_var[rand() % unassigned_var_count];
-            if(var_lit_count[v1] > var_lit_count[sel_v]){
+            if(var_lit_count[v1] + var_neighbor_count[v1] > var_lit_count[sel_v] + var_neighbor_count[sel_v]){
                 sel_v = v1;
                 // sel_v_lit_count = v1_lit_count;
             }
