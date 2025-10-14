@@ -8,7 +8,7 @@ using namespace std;
 class Decimation
 {
   public:
-    Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight);
+    Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight, int *ls_var_neighbor_count);
 
     void make_space(int max_c, int max_v);
     void free_memory();
@@ -38,6 +38,8 @@ class Decimation
     lit **var_lit;
     int *var_lit_count;
 
+    int *var_neighbor_count;
+
     int *local_opt;
     int *global_opt;
     long long *org_clause_weight;
@@ -61,7 +63,7 @@ class Decimation
     int *clause_lit_count;
 };
 
-Decimation::Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight, ls_var_neighbor_count)
+Decimation::Decimation(lit **ls_var_lit, int *ls_var_lit_count, lit **ls_clause_lit, long long *ls_org_clause_weight, long long ls_top_clause_weight, int *ls_var_neighbor_count)
 {
     var_lit = ls_var_lit;
     var_lit_count = ls_var_lit_count;
