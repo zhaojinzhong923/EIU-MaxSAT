@@ -189,7 +189,7 @@ void EIUMaxSAT::init(vector<int> &init_solution)
 
 int EIUMaxSAT::pick_var()
 {
-    int i, v, c;
+    int i, v, c, sample_size = 20, sample_s = 0.2;
     int best_var;
     int sel_c;
     lit *p;
@@ -267,8 +267,13 @@ int EIUMaxSAT::pick_var()
             sel_c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
             // if (clause_lit_count[sel_c] != 0)
             //     break;
-            if((softunsat_stack_fill_pointer > 10) && ((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < 0.2) && (problem_weighted==1) ){
-                for (i = 0; i < 10; ++i)
+            if(opt_count < 10 ){
+                sample_size = 20 - opt_count;
+            }else{
+                sample_size = 10;
+            }
+            if((softunsat_stack_fill_pointer > sample_size) && ((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < 0.2) && (problem_weighted==1) ){
+                for (i = 0; i < sample_size; ++i)
                 {
                     c = softunsat_stack[rand() % softunsat_stack_fill_pointer];
                     if (org_clause_weight[c] > org_clause_weight[sel_c])
@@ -315,7 +320,7 @@ void EIUMaxSAT::local_search_with_decimation(char *inputfile)
         // if(local_soln_feasible == 1){
         //     deci.unit_prosess_2();
         // }
-        deci.unit_prosess(best_soln);
+        deci.unit_prosess();
         init(deci.fix);
 
         long long local_opt = __LONG_LONG_MAX__;
@@ -336,29 +341,7 @@ void EIUMaxSAT::local_search_with_decimation(char *inputfile)
                     //cout << "o " << soft_unsat_weight << " " << total_step << " " << tries << " " << opt_time << endl;
                     cout << "o " << soft_unsat_weight << endl;
                     opt_unsat_weight = soft_unsat_weight;
-
-                    deci.have_sol = true;
-                    for (int v = 1; v <= num_vars; ++v){
-
-                    
-                        if(cur_soln[v] != best_soln[v]){
-                            deci.initial_value[v]++ ;
-                        }
-                        best_soln[v] = cur_soln[v];
-                        // if(cur_soln[v] == 1)
-                        // {
-                        //     deci.initial_value[v] ++;
-                        // }
-                        // else if(cur_soln[v] == 0)
-                        // {
-                        //     deci.initial_value[v] --;
-                        // }
-                        // else
-                        // {
-                        //     cout<<"Assignment error"<<endl;
-                        //     exit(0);
-                        // }
-                    }
+                    opt_count++;
                 }
                 if (best_soln_feasible == 0)
                 {

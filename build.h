@@ -105,6 +105,7 @@ void EIUMaxSAT::settings()
     max_non_improve_flip = 10000000;
     large_clause_count_threshold = 0;
     soft_large_clause_count_threshold = 0;
+    opt_count = 0;
 
     if (1 == problem_weighted) // Weighted Partial MaxSAT
     {
