@@ -108,6 +108,8 @@ void EIUMaxSAT::settings()
 
     if (1 == problem_weighted) // Weighted Partial MaxSAT
     {
+        sample_k = 15;
+        sample_p = 0.4;
         coe_soft_clause_weight = 3000;
         if (0 != num_hclauses)
         {
@@ -140,6 +142,8 @@ void EIUMaxSAT::settings()
     }
     else // Unweighted Partial Maxsat
     {
+        sample_k = 20;
+        sample_p = 0.2;
         avg_soft_weight =  1;
         for (int i = 0; i < num_sclauses; ++i)
         {

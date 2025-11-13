@@ -315,7 +315,7 @@ void EIUMaxSAT::local_search_with_decimation(char *inputfile)
         // if(local_soln_feasible == 1){
         //     deci.unit_prosess_2();
         // }
-        deci.unit_prosess();
+        deci.unit_prosess(sample_p);
         init(deci.fix);
 
         long long local_opt = __LONG_LONG_MAX__;

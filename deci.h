@@ -18,8 +18,8 @@ class Decimation
     void remove_unassigned_var(int v);
     void hunit_propagation();
     void sunit_propagation();
-    void random_propagation();
-    void unit_prosess();
+    void random_propagation(double sample_p);
+    void unit_prosess(double sample_p);
     bool choose_sense(int v);
 
     vector<int> fix;
@@ -384,9 +384,9 @@ void Decimation::sunit_propagation()
     assign(v, sense);
 }
 
-void Decimation::random_propagation()
+void Decimation::random_propagation(double sample_p)
 {
-    if((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < 0.2 && unassigned_var_count > 15){
+    if((rand() % MY_RAND_MAX_INT) * BASIC_SCALE < sample_p && unassigned_var_count > 15){
         int sel_v, v1, sense;
         sel_v = unassigned_var[rand() % unassigned_var_count];
         // do{
@@ -414,7 +414,7 @@ void Decimation::random_propagation()
     }
 }
 
-void Decimation::unit_prosess()
+void Decimation::unit_prosess(double sample_p)
 {
 
     while (unassigned_var_count > 0)
@@ -429,7 +429,7 @@ void Decimation::unit_prosess()
         }
         else
         {
-            random_propagation();
+            random_propagation(sample_p);
         }
     }
 }
