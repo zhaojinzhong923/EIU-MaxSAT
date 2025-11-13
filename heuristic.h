@@ -315,7 +315,7 @@ void EIUMaxSAT::local_search_with_decimation(char *inputfile)
         // if(local_soln_feasible == 1){
         //     deci.unit_prosess_2();
         // }
-        deci.unit_prosess(best_soln);
+        deci.unit_prosess();
         init(deci.fix);
 
         long long local_opt = __LONG_LONG_MAX__;
@@ -336,28 +336,6 @@ void EIUMaxSAT::local_search_with_decimation(char *inputfile)
                     //cout << "o " << soft_unsat_weight << " " << total_step << " " << tries << " " << opt_time << endl;
                     cout << "o " << soft_unsat_weight << endl;
                     opt_unsat_weight = soft_unsat_weight;
-
-                    deci.have_sol = true;
-                    for (int v = 1; v <= num_vars; ++v){
-
-                    
-                        if(cur_soln[v] != best_soln[v]){
-                            deci.initial_value[v]++ ;
-                        }
-                        best_soln[v] = cur_soln[v];
-                        // if(cur_soln[v] == 1)
-                        // {
-                        //     deci.initial_value[v] ++;
-                        // }
-                        // else if(cur_soln[v] == 0)
-                        // {
-                        //     deci.initial_value[v] --;
-                        // }
-                        // else
-                        // {
-                        //     cout<<"Assignment error"<<endl;
-                        //     exit(0);
-                        // }
                     }
                 }
                 if (best_soln_feasible == 0)
